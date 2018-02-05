@@ -7,9 +7,10 @@ Matthew Tam
 public class Fish {
 	private final boolean DEBUG = true;
 	
+	private String token = "";
 	private boolean living = true;
-	private int x,
-				y;
+	public int x = 0,
+				y = 0;
 	
 	public boolean isLiving() {
 		return living;
@@ -17,19 +18,9 @@ public class Fish {
 	public void setLiving(boolean living) {
 		this.living = living;
 	}
-	public int getX() {
-		return x;
+	public String getToken() {
+		return token;
 	}
-	public void setX(int x) {
-		this.x = x;
-	}
-	public int getY() {
-		return y;
-	}
-	public void setY(int y) {
-		this.y = y;
-	}
-
 	public void wander() {
 		Random rgen = new Random();
 		int randomDirection = rgen.nextInt()%8;
@@ -45,11 +36,11 @@ public class Fish {
 		switch(parameter) {
 			case 0:
 				//North
-				y--;
+				y++;
 				break;
 			case 1:
 				//North East
-				y--;
+				y++;
 				x++;
 				break;
 			case 2:
@@ -58,16 +49,16 @@ public class Fish {
 				break;
 			case 3:
 				//South East
-				y++;
+				y--;
 				x++;
 				break;
 			case 4:
 				//South
-				y++;
+				y--;
 				break;
 			case 5:
 				//South West
-				y++;
+				y--;
 				x--;
 				break;
 			case 6:
@@ -77,7 +68,7 @@ public class Fish {
 			case 7:
 				//North West
 				x--;
-				y--;
+				y++;
 				break;
 		}
 	}
@@ -86,9 +77,10 @@ public class Fish {
 		
 	}
 	
-	public Fish(int x, int y){
+	public Fish(int x, int y, String token){
 		super();
 		this.x = x;
 		this.y = y;
+		this.token = token;
 	}
 }
