@@ -7,6 +7,7 @@ public class Tuna extends Fish{
 	private final boolean DEBUG = true;
 	//Line of Sight: 1 degree of indirection from where the fish currently is.  In other words, the shark checks all adjacent cells.
 	
+	private String token = "T";
 	public Tuna(int x, int y) {
 		super(x, y);
 	}	

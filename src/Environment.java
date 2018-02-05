@@ -14,6 +14,11 @@ public class Environment{
 	public String[][] getEnvironmentGrid() {
 		return environmentGrid;
 	}
+	public String getValue(int x, int y) {
+		String result = environmentGrid[x][y];
+		
+		return result;
+	}
 	public void setEnvironmentGrid(String[][] environmentGrid) {
 		this.environmentGrid = environmentGrid;
 	}
@@ -42,6 +47,7 @@ public class Environment{
 		environmentGrid[x2][y2] = temp;
 	}
 	public int[] getLocation(String fish) {
+		//
 		int[] location = new int[2];
 		
 		for (int i = 0 ; i < x; i++)
