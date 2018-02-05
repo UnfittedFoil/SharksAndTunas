@@ -9,20 +9,14 @@ public class Game{
 	
 	public static void main(String[] args){
 		Environment ocean = new Environment(4, 4);
-		
 		ocean.printBoard();
-		
 		
 		Fish f1 = new Fish(0, 0);
 		
-		for(;;) {
-			try {
-				f1.wander();
-				break;
-			} catch(ArrayIndexOutOfBoundsException exception) {
-				
-			}
+		for(int position : ocean.getLocation("T")) {
+			System.out.print("[" + position + "]");
 		}
+		System.out.println();
 		
 	}
 }
