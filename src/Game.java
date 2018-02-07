@@ -20,10 +20,17 @@ public class Game{
 		ocean.addFish(tuna, 3, 3);
 		
 		ocean.printBoard();	
-		
+
+		/*
 		//Lets tuna wander.
-		ocean.moveFish(tuna);
-		System.out.println(tuna.x + "," + tuna.y);
+		ocean.moveFish(tuna, tuna.wander());
 		ocean.printBoard();
+		System.out.println(tuna.x + "," + tuna.y);
+		*/
+
+		//Moves Tuna to illegal location.
+		ocean.moveFish(tuna, tuna.move(0));
+		ocean.printBoard();
+		System.out.println(tuna.x + "," + tuna.y);
 	}
 }

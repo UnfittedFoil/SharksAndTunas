@@ -84,14 +84,17 @@ public class Environment{
 		}
 		return location;
 	}
-	public void moveFish(Fish fish, int[] fishMove) {
+	public void moveFish(Fish fish, int[] newLoc) {
 		int oldLocX = fish.x;
 		int oldLocY = fish.y;
-		if(!isValidAddress(fishMove[0], fishMove[1])) {
-			swapNodes(oldLocX, oldLocY, fishMove[0], fishMove[1]);
-			fish.x = fishMove[0];
-			fish.y = fishMove[1];
-		}	
+		if(isValidAddress(newLoc[0], newLoc[1])) {
+			swapNodes(oldLocX, oldLocY, newLoc[0], newLoc[1]);
+			fish.x = newLoc[0];
+			fish.y = newLoc[1];
+		} else {
+			newLoc = fish.wander();
+			moveFish(fish, newLoc);
+		}
 	}
 	//Constructor
 	public Environment(int x, int y) {
