@@ -4,7 +4,7 @@ Matthew Tam
 */
 
 public class Game{
-	private final boolean DEBUG = true;
+	private final boolean DEBUG = true;  //Debug flag.  Must be manually set.  Enables debug messages to the console.
 	private int players = 0;
 	
 	public static void main(String[] args){

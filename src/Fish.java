@@ -6,14 +6,16 @@ Matthew Tam
 */
 
 public class Fish {
-	private final boolean DEBUG = true;
 	
-	private final String token;
+	private final boolean DEBUG = true;  //Debug flag.  Must be manually set.  Enables debug messages to the console.
+	
+	private final String token; //The string representation of a Fish object within the Environment object.  Preferably one character only, but can technically be more.
 	private boolean living = true;
+	//This is where the Fish thinks it is.  The fish stores it's own x and y location within the Environment object so that when the Environment object asks for a Fish's location, the Environment object doesn't have to re-find the Fish.
 	public int x = 0,
 				y = 0;
 	
-	public boolean isLiving() {
+	public boolean getLiving() {
 		return living;
 	}
 	public void setLiving(boolean living) {
@@ -23,6 +25,7 @@ public class Fish {
 		return token;
 	}
 	public int[] wander() {
+		//Uses Java's built-in random number generator to create a random number.  This number is then divided by 8.  The absolute value of the remainder of the that division problem is then taken and fed to the Fish's "move()" method, which accepts inputs 0-8, where each number is mapped to a direction with 0 being "north" and mapping the rest of the compass clockwise until all 8 directions are numbered.  See the "move()" method's comments for a better visual aid explaininng how the numbers are mapped to direction.
 		if(DEBUG)
 			System.out.println("Begin wander():");
 		
@@ -37,7 +40,6 @@ public class Fish {
 		
 		return result;
 	}
-	
 	public int[] move(int parameter) {
 		int[] result = {x, y};
 		
@@ -109,7 +111,7 @@ public class Fish {
 	}
 	
 	public void lineOfSight(){
-		
+		//Line of Sight: 1 degree of indirection from where the fish currently is.  In other words, the shark checks all adjacent cells.
 	}
 	
 	public Fish(String token){
