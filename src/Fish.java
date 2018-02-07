@@ -1,7 +1,7 @@
 import java.util.Random;
-import java.lang.Math;
 /*
 Matthew Tam
+Benjamin Martinez
 2/2/18
 */
 
@@ -25,12 +25,12 @@ public class Fish {
 		return token;
 	}
 	public int[] wander() {
-		//Uses Java's built-in random number generator to create a random number.  This number is then divided by 8.  The absolute value of the remainder of the that division problem is then taken and fed to the Fish's "move()" method, which accepts inputs 0-8, where each number is mapped to a direction with 0 being "north" and mapping the rest of the compass clockwise until all 8 directions are numbered.  See the "move()" method's comments for a better visual aid explaininng how the numbers are mapped to direction.
+		//Uses Java's built-in random number generator to create a random number.  This number is then divided by 8.  The absolute value of the remainder of the that division problem is then taken and fed to the Fish's "move()" method, which accepts inputs 0-8, where each number is mapped to a direction with 0 being "north" and mapping the rest of the compass clockwise until all 8 directions are numbered.  See the "move()" method's comments for a better visual aid explaining how the numbers are mapped to direction.
 		if(DEBUG)
 			System.out.println("Begin wander():");
 		
 		Random rgen = new Random();
-		int randomDirection = Math.abs(rgen.nextInt()%8);
+		int randomDirection = rgen.nextInt(8);
 		int [] result = move(randomDirection);
 		
 		if(DEBUG){
