@@ -19,7 +19,24 @@ public class Environment{
 		return result;
 	}
 	public void setEnvironmentGrid(String[][] environmentGrid) {
+
 		this.environmentGrid = environmentGrid;
+	}
+	public boolean isValidAddress (int x, int y) {
+		if(y < 0 || y > (this.y-1) || x < 0 || x > (this.x-1))
+			return false;
+		return true;
+	}
+	public void addFish(Fish fish, int x, int y) { 
+		//Check if x and y are valid.  Then set the fish object to have the address and put the fish on the board.
+		if(isValidAddress(x, y)) {
+			fish.x = x;
+			fish.y = y;
+			environmentGrid[y][x] = fish.getToken();
+		}
+		else {
+			System.out.println("[" + fish.getToken() + "][" + x + "," + y + "] Invalid move: Out of Bounds.");
+		}
 	}
 	public void fillBoard(){
 		for(int i=0; i < y; i++){
@@ -27,8 +44,6 @@ public class Environment{
 				environmentGrid[i][j] = " ";
 			}
 		}
-		environmentGrid[0][0] = "S";
-		environmentGrid[3][3] = "T";
 	}	
 	public void printBoard(){
 		//Draws the board so that y values increase upwards and x values increase as you move to the right.
@@ -47,10 +62,11 @@ public class Environment{
 		environmentGrid[y2][x2] = temp;
 	}
 	public int[] getLocation(String fish) {
-		//Returns a 2x1 array that holds the location in the environmentGrid matrix of a specific object, where index 1 = x and index 2 = y.
+		//Returns a 2x1 array that holds the location in the environmentGrid matrix of a specific object, where index 1 = x and index 0 = y.
+		//This method is subject to change.
 		int[] location = new int[2];
 		
-		for (int i = 0 ; i < y; i++) 
+		for (int i = 0 ; i < y; i++)
 		{
 			for(int j = 0 ; j < x ; j++)
 			{
@@ -68,9 +84,14 @@ public class Environment{
 		}
 		return location;
 	}
-	public void moveFish(Fish fish) {
-		int oldLoc[] = getLocation(fish.getToken());
-		
+	public void moveFish(Fish fish, int[] fishMove) {
+		int oldLocX = fish.x;
+		int oldLocY = fish.y;
+		if(!isValidAddress(fishMove[0], fishMove[1])) {
+			swapNodes(oldLocX, oldLocY, fishMove[0], fishMove[1]);
+			fish.x = fishMove[0];
+			fish.y = fishMove[1];
+		}	
 	}
 	//Constructor
 	public Environment(int x, int y) {
