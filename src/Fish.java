@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.lang.Math;
 /*
 Matthew Tam
 2/2/18
@@ -7,7 +8,7 @@ Matthew Tam
 public class Fish {
 	private final boolean DEBUG = true;
 	
-	private String token = "";
+	private final String token;
 	private boolean living = true;
 	public int x = 0,
 				y = 0;
@@ -21,66 +22,69 @@ public class Fish {
 	public String getToken() {
 		return token;
 	}
-	public void wander() {
+	public int[] wander() {
 		Random rgen = new Random();
-		int randomDirection = rgen.nextInt()%8;
-		move(randomDirection);
+		int randomDirection = Math.abs(rgen.nextInt()%8);
+		int [] result = move(randomDirection);
+		
 		if(DEBUG){
-			System.out.println(x + "," + y);
+			System.out.println(randomDirection);
+			System.out.println("Attempting to move to: " + result[0] + "," + result[1]);
 		}
 		
+		return result;
 	}
 	
-	public void move(int parameter) {
+	public int[] move(int parameter) {
+		int[] result = {x, y};
 		
 		switch(parameter) {
 			case 0:
 				//North
-				y++;
+				result[1]++;//y++
 				break;
 			case 1:
 				//North East
-				y++;
-				x++;
+				result[0]++;//x++
+				result[1]++;//y++
 				break;
 			case 2:
 				//East
-				x++;
+				result[0]++;//x++
 				break;
 			case 3:
 				//South East
-				y--;
-				x++;
+				result[0]++;//x++
+				result[1]--;//y--
 				break;
 			case 4:
 				//South
-				y--;
+				result[1]--;//y--
 				break;
 			case 5:
 				//South West
-				y--;
-				x--;
+				result[0]--;//x--
+				result[1]--;//y--
 				break;
 			case 6:
 				//West
-				x--;
+				result[0]--;//x--
 				break;
 			case 7:
 				//North West
-				x--;
-				y++;
+				result[0]--;//x--
+				result[1]++;//y++
 				break;
 		}
+		return result;
 	}
 	
 	public void lineOfSight(){
 		
 	}
 	
-	public Fish(int x, int y, String token){
+	public Fish(String token){
 		super();
-		this.x = x;
-		this.y = y;
 		this.token = token;
-	}
+	}	
 }
