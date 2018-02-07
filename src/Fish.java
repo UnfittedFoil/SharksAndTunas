@@ -1,7 +1,7 @@
 import java.util.Random;
 /*
 Matthew Tam
-Benjamin Ma
+Benjamin Martinez
 2/6/18
 */
 

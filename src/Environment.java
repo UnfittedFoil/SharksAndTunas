@@ -131,9 +131,9 @@ public class Environment{
 
 	   
 		
-		if (environmentGrid[randomX][randomY] == " ")
+		if (environmentGrid[randomY][randomX] == " ")
 		{
-			environmentGrid[randomX][randomY] = shark.getToken();
+			environmentGrid[randomY][randomX] = shark.getToken();
 
 		}
 		else
@@ -144,9 +144,9 @@ public class Environment{
 	
 	public void addShark(Shark shark, int x, int y)			//adds a shark manually
 	{
-		if (!environmentGrid[x][y].isEmpty())
+		if (!environmentGrid[y][x].isEmpty())
 		{
-			environmentGrid[x][y] = shark.getToken();
+			environmentGrid[y][x] = shark.getToken();
 		}
 		else
 		{
@@ -163,9 +163,9 @@ public class Environment{
 
 	   
 		
-		if (environmentGrid[randomX][randomY] == " ")
+		if (environmentGrid[randomY][randomX] == " ")
 		{
-			environmentGrid[randomX][randomY] = tuna.getToken();
+			environmentGrid[randomY][randomX] = tuna.getToken();
 			
 		}
 		else
@@ -176,9 +176,9 @@ public class Environment{
 	
 	public void addTuna(Tuna tuna, int x, int y)		//adds a tuna manually
 	{
-		if (!environmentGrid[x - 1][y - 1].isEmpty())
+		if (!environmentGrid[y - 1][x - 1].isEmpty())
 		{
-			environmentGrid[x - 1][y - 1] = tuna.getToken();
+			environmentGrid[y - 1][x - 1] = tuna.getToken();
 		}
 		else
 		{
