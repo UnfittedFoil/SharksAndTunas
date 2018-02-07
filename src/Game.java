@@ -1,6 +1,7 @@
 /*
 Matthew Tam
-2/2/18
+Benjamin Martinez
+2/6/18
 */
 
 public class Game{
@@ -8,29 +9,15 @@ public class Game{
 	private int players = 0;
 	
 	public static void main(String[] args){
-		//Creating a new environment, or "game board", sized 4x4.
-		Environment ocean = new Environment(4, 4);
+		Environment ocean = new Environment(4, 4, 1, 1);    // creates a 4x4 board with 1 shark and 1 tuna
 		
-		//Create and add a shark to the environment
-		Shark shark = new Shark();
-		ocean.addFish(shark, 0, 0);
 		
-		//Create and add a tuna to the environment.
-		Tuna tuna = new Tuna();
-		ocean.addFish(tuna, 3, 3);
 		
-		ocean.printBoard();	
-
-		/*
-		//Lets tuna wander.
-		ocean.moveFish(tuna, tuna.wander());
+		
+		
 		ocean.printBoard();
-		System.out.println(tuna.x + "," + tuna.y);
-		*/
-
-		//Moves Tuna to illegal location.
-		ocean.moveFish(tuna, tuna.move(0));
-		ocean.printBoard();
-		System.out.println(tuna.x + "," + tuna.y);
+		
+		System.out.println();
+		
 	}
 }
