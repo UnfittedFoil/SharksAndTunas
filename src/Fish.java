@@ -2,6 +2,10 @@ import java.util.Random;
 /*
 Matthew Tam
 Benjamin Martinez
+Hiral Shah
+Drew de Montagnac
+Carl Koenig
+
 2/2/18
 */
 
@@ -12,7 +16,7 @@ public class Fish {
 	private final String token; //The string representation of a Fish object within the Environment object.  Preferably one character only, but can technically be more.
 	private boolean living = true;
 	//This is where the Fish thinks it is.  The fish stores it's own x and y location within the Environment object so that when the Environment object asks for a Fish's location, the Environment object doesn't have to re-find the Fish.
-	public int x = 0,
+	private int x = 0,
 				y = 0;
 	
 	public boolean getLiving() {
@@ -24,6 +28,18 @@ public class Fish {
 	public String getToken() {
 		return token;
 	}
+	public int getX() {
+		return x;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public int getY() {
+		return y;
+	}
+	public void setY(int y) {
+		this.y = y;
+	}
 	public int[] wander() {
 		//Uses Java's built-in random number generator to create a random number from 0 to 8.  This number is then fed to the Fish's "move()" method, which accepts inputs 0-8, where each number is mapped to a direction with 0 being "north" and mapping the rest of the compass clockwise until all 8 directions are numbered.  See the "move()" method's comments for a better visual aid explaining how the numbers are mapped to direction.
 		if(DEBUG)
@@ -31,10 +47,13 @@ public class Fish {
 		
 		Random rgen = new Random();
 		int randomDirection = rgen.nextInt(8);
+		
+		if(DEBUG)
+			System.out.println("Random Number:" + randomDirection);
+		
 		int [] result = move(randomDirection);
 		
 		if(DEBUG){
-			System.out.println("Random Number:" + randomDirection);
 			System.out.println("Attempting to move to: " + result[0] + "," + result[1]);
 		}
 		
