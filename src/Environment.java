@@ -60,8 +60,15 @@ public class Environment{
 		this.tunas = tunas;
 	}
 	public String getValue(int x, int y) {
+
 		//Returns the value of the array index [y][x]		
 		return environmentGrid[y][x];
+	}
+	public int getX() {
+		return x;
+	}
+	public int getY() {
+		return y;
 	}
 	public boolean isWithinBounds (int x, int y) {
 		//Determines if the x and y indices exist within the String matrix array.  If they do, return true.  Otherwise, return false.

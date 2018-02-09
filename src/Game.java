@@ -18,23 +18,17 @@ public class Game{
 		
 		//Create and add a shark to the environment
 		Shark shark = new Shark();
-		ocean.addFish(shark);
+		ocean.addFish(shark, 1, 1);
 		
 		//Create and add a tuna to the environment.
 		Tuna tuna = new Tuna();
-		ocean.addFish(tuna);
+		ocean.addFish(tuna, 2, 2);
 		
 		ocean.printBoard();	
 
 		
 		//Lets tuna wander.
-		ocean.moveFish(tuna, tuna.wander());
-		ocean.printBoard();
-		System.out.println(tuna.getX() + "," + tuna.getY());
-		
-
-		//Moves Tuna to illegal location.
-		ocean.moveFish(tuna, tuna.move(0));
+		shark.search(ocean);
 		ocean.printBoard();
 		System.out.println(tuna.getX() + "," + tuna.getY());
 	}
