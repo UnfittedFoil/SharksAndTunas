@@ -41,6 +41,7 @@ public class Fish {
 	public void setY(int y) {
 		this.y = y;
 	}
+	//Moves the fish in a random direction 1 square away from it's current location as long as the fish is alive. 
 	public int[] wander() {
 		//Uses Java's built-in random number generator to create a random number from 0 to 8.  This number is then fed to the Fish's "move()" method, which accepts inputs 0-8, where each number is mapped to a direction with 0 being "north" and mapping the rest of the compass clockwise until all 8 directions are numbered.  See the "move()" method's comments for a better visual aid explaining how the numbers are mapped to direction.
 		if(DEBUG)
@@ -75,6 +76,11 @@ public class Fish {
 		
 		if(DEBUG)
 			System.out.println("Begin move():");
+		if(!living){
+			if(DEBUG)
+				System.out.println("Fish is not alive: move cancelled");
+			return result;
+		}
 		
 		String directionName="";
 		
@@ -123,6 +129,9 @@ public class Fish {
 				result[0]--;//x--
 				result[1]++;//y++
 				break;
+			default:
+				directionName="In place";
+				break;
 		}
 		if(DEBUG)
 			System.out.println("Moving " + directionName);
@@ -133,7 +142,33 @@ public class Fish {
 	public void lineOfSight(){
 		//Line of Sight: 1 degree of indirection from where the fish currently is.  In other words, the shark checks all adjacent cells.
 	}
-	
+	//maps numpad keys to local directional values
+		public int keyMapping(int value){
+			/* 8 --> 0		3 --> 3		4 --> 6
+			 * 9 --> 1		2 --> 4		7 --> 7
+			 * 6 --> 2		1 --> 5		5 -->  > 7 || < 0
+			 */
+			switch(value) {
+				case 1:
+					return 5;
+				case 2:
+					return 4;
+				case 3:
+					return 3;
+				case 4:
+					return 6;
+				case 6:
+					return 2;
+				case 7:
+					return 7;
+				case 8:
+					return 0;
+				case 9:
+					return 1;		
+				default:
+					return 8;
+			}			
+		}
 	public Fish(String token){
 		super();
 		this.token = token;

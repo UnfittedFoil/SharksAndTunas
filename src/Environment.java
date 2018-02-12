@@ -35,41 +35,31 @@ public class Environment{
 	}
 	public void setSharks(ArrayList<Shark> sharks) {      //adds the number of Sharks specified by numOfSharks to ArrayList sharks
 		
-		sharks = new ArrayList<Shark>();
+		this.sharks = new ArrayList<Shark>();
 		
 		for(int i = 0; i < numOfSharks; i++)
 		{
 			Shark shark = new Shark();
-			sharks.add(shark);
+			addFish(shark);
 		}
 		
-		this.sharks = sharks;
 	}
 	public ArrayList<Tuna> getTuna() {
 		return tunas;
 	}
 	public void setTunas(ArrayList<Tuna> tunas) {     //adds the number of Tuna specified by numOfSharks to ArrayList tuna
 		
-		tunas = new ArrayList<Tuna>();
+		this.tunas = new ArrayList<Tuna>();
 		
 		for(int i = 0; i < numOfTuna; i++)
 		{
 			Tuna tuna = new Tuna();
-			tunas.add(tuna);
+			addFish(tuna);
 		}
-		
-		this.tunas = tunas;
 	}
 	public String getValue(int x, int y) {
-
 		//Returns the value of the array index [y][x]		
 		return environmentGrid[y][x];
-	}
-	public int getX() {
-		return x;
-	}
-	public int getY() {
-		return y;
 	}
 	public boolean isWithinBounds (int x, int y) {
 		//Determines if the x and y indices exist within the String matrix array.  If they do, return true.  Otherwise, return false.
@@ -87,12 +77,18 @@ public class Environment{
 			fish.setX(randomX);
 			fish.setY(randomY);
 			environmentGrid[randomY][randomX] = fish.getToken();
-			
+			if(fish.getClass() == Tuna.class){
+				tunas.add((Tuna) fish);
+			}
+			else if(fish.getClass() == Shark.class){
+				sharks.add((Shark) fish);
+			}
 		}
 		else
 		{
 			addFish(fish);
 		}
+		
 	}
 	public void addFish(Fish fish, int x, int y) { //Adds a Fish manually.
 		//Check if x and y are valid.  Then set the fish object to have the address and put the fish on the board.
@@ -100,10 +96,31 @@ public class Environment{
 			fish.setX(x);
 			fish.setY(y);
 			environmentGrid[y][x] = fish.getToken();
+			if(fish.getClass() == Tuna.class){
+				tunas.add((Tuna) fish);
+			}
+			else if(fish.getClass() == Shark.class){
+				sharks.add((Shark) fish);
+			}
 		}
 		else {
 			System.out.println("[" + fish.getToken() + "][" + x + "," + y + "] Invalid action: Location is inaccessable.");
 		}
+	}
+	//Removes an existing tuna fish from existence
+	public boolean removeTuna(Tuna tuna){
+		if(!tunas.contains(tuna)){
+			return false;
+		}
+		environmentGrid[tuna.getY()][tuna.getX()] = " ";
+		System.out.println(tunas.size() + " Tunas remain");
+		//if the object references are the same
+		tunas.remove(tuna);   //may come back later///////////////////////////////////////////////////////////////////////////////
+		tuna.setLiving(false);
+		System.out.println(tunas.size() + " Tunas remain");
+
+		return true;
+		
 	}
 	public void fillBoard(){
 		//Uses nested "for" loops to automatically populate the initialized String matrix array with " " strings to make them blank.
@@ -179,11 +196,12 @@ public class Environment{
 		this.numOfSharks = numOfSharks;
 		this.numOfTuna = numOfTuna;
 		
-		setSharks(sharks);
-		setTunas(tunas);
-		
 		this.environmentGrid = new String[this.y][this.x];
 		this.fillBoard();
+		
+
+		setSharks(sharks);
+		setTunas(tunas);
 	}
 	
 	public Environment(int x, int y) {
@@ -193,5 +211,7 @@ public class Environment{
 		this.y = y;
 		this.environmentGrid = new String[this.y][this.x];
 		this.fillBoard();
+		tunas = new ArrayList<Tuna>();
+		sharks = new ArrayList<Shark>();
 	}
 }
