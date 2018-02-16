@@ -19,6 +19,7 @@ public void search(Environment env) {
 		int searchX = this.getX() - 1;
 		int searchY = this.getY() - 1;
 		
+		//Searches in a square, so only one side is needed, in this case a length.  This variable can be changed to try and accommodate a larger search area but the code as it stands right now will not function properly without the length being exactly 3.
 		int searchArea = 3;
 		
 		for(int i = 0;i < searchArea;i++) {

@@ -27,8 +27,12 @@ public class Game{
 		
 		ocean.printBoard();	
 
-		
 		//Lets tuna wander.
+		ocean.moveFish(shark, shark.wander());
+		ocean.printBoard();
+		System.out.println(tuna.getX() + "," + tuna.getY());
+		
+		//Lets shark search.
 		shark.search(ocean);
 		ocean.printBoard();
 		System.out.println(tuna.getX() + "," + tuna.getY());
